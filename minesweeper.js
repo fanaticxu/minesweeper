@@ -44,7 +44,8 @@ function startGame () {
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
   }
   lib.initBoard()
-  // document.addEventListener('click', checkForWin())
+  document.addEventListener('click', checkForWin)
+  document.addEventListener('contextmenu', checkForWin)
 }
 
 // Define this function to look for a win condition:
@@ -58,9 +59,9 @@ function checkForWin () {
   // detected that they've won, that is!)
   //   lib.displayMessage('You win!')
     for(let i = 0; i< board.cells.length; i++){
-      if(!(board.cells[i].isMine === true && board.cells[i].isMarked === true)){
+      if(board.cells[i].isMine === true && board.cells[i].isMarked === false){
         return
-      } else if(board.cells[i].isMarked === true && board.cells[i].hidden === true){
+      } else if(board.cells[i].isMine === false && board.cells[i].hidden === true){
         return
       }
     }
